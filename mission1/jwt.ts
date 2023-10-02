@@ -1,4 +1,4 @@
-const { createHmac } = require("node:crypto");
+import * as crypto from "node:crypto";
 
 const base64 = (data: any) => {
   const stringifiedData = JSON.stringify(data);
@@ -24,7 +24,7 @@ const sign = (user: User) => {
 
   const secretKey = "99jenny0614";
 
-  const hmac256 = createHmac("sha256", secretKey);
+  const hmac256 = crypto.createHmac("sha256", secretKey);
   const signature = hmac256
     .update(`${encodedHeader}.${encodedPayload}`)
     .digest("base64")
